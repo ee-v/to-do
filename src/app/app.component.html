@@ -1,0 +1,19 @@
+<div class="navbar bg-primary text-primary-content shadow-md width-scroll padding-scroll">
+    <div class="navbar-start"></div>
+    <div class="navbar-center">
+        <a class="text-xl">To-Do App</a>
+    </div>
+    <div class="navbar-end pr-6">
+        <a *ngIf="isDesktop" class="btn btn-ghost rounded-btn" routerLink="tasks/new-task">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>Agregar
+        </a>
+    </div>
+</div>
+<div [@routeAnimations]="prepareRoute(outlet)" (@routeAnimations.start)="onStart()" (@routeAnimations.done)="onDone()"
+    class="pt-4">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
+<ng-template anchor></ng-template>

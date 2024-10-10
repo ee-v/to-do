@@ -1,0 +1,25 @@
+<input type="checkbox" [id]="name" class="modal-toggle">
+<div #modalRef class="modal modal-bottom sm:modal-middle" (click)="backdropClick($event)">
+    <div class="modal-box">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" (click)="close()">✕</button>
+        <div class="flex items-center gap-1 mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-6 h-6 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+            </svg>
+            <span class="badge badge-outline">{{task?.createdDate|date}}</span>
+        </div>
+        <p class="py-8 px-2">{{task?.description}}</p>
+        <div class="flex flex-col gap-2 justify-start sm:flex-row sm:justify-between">
+            <div class="flex items-center gap-1">
+                <span class="font-medium text-xs">Estatus:</span>
+                <span class="badge" [ngClass]="task?.status?'badge-success':'badge-ghost'">{{statusText}}</span>
+            </div>
+            <div class="flex items-center gap-1" *ngIf="task?.deadLine">
+                <span class="font-medium text-xs">Fecha limite:</span>
+                <span class="badge badge-accent">{{task?.deadLine|date}}</span>
+            </div>
+        </div>
+    </div>
+</div>

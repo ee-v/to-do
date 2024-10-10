@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container mx-auto px-4 mt-12 flex flex-col justify-center items-center gap-4 sm:max-w-lg">
+        <div class="form-control w-full">
+            <div class="label">
+                <span class="label-text font-semibold">Descripción:</span>
+            </div>
+            <textarea class="textarea textarea-bordered w-full h-32 resize-none"
+                [ngClass]="{'textarea-error':descriptionField?.invalid && (descriptionField?.dirty || descriptionField?.touched)}"
+                formControlName="description" placeholder="Sacar la basura"></textarea>
+            <div class="label"
+                *ngIf="descriptionField?.invalid && (descriptionField?.dirty || descriptionField?.touched)">
+                <span class="label-text-alt text-error" *ngIf="descriptionField?.errors?.required">Se requiere que
+                    escribas algo</span>
+            </div>
+        </div>
+        <div class="form-control w-full">
+            <div class="label">
+                <span class="label-text font-semibold">Fecha limite:</span>
+            </div>
+            <input type="date" placeholder="Type here" class="input input-bordered w-full " formControlName="deadLine"
+                (click)="onClick($event)" />
+            <div class="label">
+                <span class="label-text-alt text-gray-400">*Opcional</span>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center mt-12 justify-evenly sm:justify-center sm:gap-12">
+        <button type="button" class="btn btn-outline" (click)="onCancel()">Cancelar</button>
+        <button type="submit" class="btn btn-primary disabled:opacity-50" [disabled]="!form.valid">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="inline-block h-6 w-6 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            Guardar
+        </button>
+    </div>
+</form>

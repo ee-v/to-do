@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container mx-auto px-4 mt-12 flex flex-col justify-center items-center gap-4 sm:max-w-lg">
+        <div class="form-control w-full">
+            <div class="label">
+                <span class="label-text font-semibold">Descripción:</span>
+            </div>
+            <textarea class="textarea textarea-bordered w-full h-32 resize-none"
+                [ngClass]="{'textarea-error':descriptionField?.invalid && (descriptionField?.dirty || descriptionField?.touched)}"
+                formControlName="description" placeholder="Sacar la basura"></textarea>
+            <div class="label"
+                *ngIf="descriptionField?.invalid && (descriptionField?.dirty || descriptionField?.touched)">
+                <span class="label-text-alt text-error" *ngIf="descriptionField?.errors?.required">Se requiere que
+                    escribas algo</span>
+            </div>
+        </div>
+        <div class="form-control w-full">
+            <div class="label">
+                <span class="label-text font-semibold">Fecha limite:</span>
+            </div>
+            <input type="date" placeholder="Type here" class="input input-bordered w-full " formControlName="deadLine"
+                (click)="onClick($event)" />
+            <div class="label">
+                <span class="label-text-alt text-gray-400">*Opcional</span>
+            </div>
+        </div>
+        <div class="form-control w-52">
+            <label class="label cursor-pointer">
+                <span class="label-text text-lg "
+                    [ngClass]="{'text-primary':statusField!.value}">{{statusField!.value?'Realizada':'Por hacer'}}</span>
+                <input type="checkbox" class="toggle toggle-primary" formControlName="status" />
+            </label>
+        </div>
+    </div>
+    <div class="flex items-center mt-12 justify-evenly sm:justify-center sm:gap-12">
+        <button type="button" class="btn btn-outline" (click)="onCancel()">Cancelar</button>
+        <button type="submit" class="btn btn-accent disabled:opacity-50" [disabled]="!form.valid">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="inline-block h-6 w-6 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            Actualizar
+        </button>
+    </div>
+</form>

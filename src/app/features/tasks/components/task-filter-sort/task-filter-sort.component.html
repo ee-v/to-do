@@ -1,0 +1,15 @@
+<div *ngIf="isOverlayShown" class="overlay z-10" (click)="closeTooltips()"></div>
+
+<div class="btn-group sticky top-4 left-1/2 -translate-x-1/2 z-10 w-auto inline-block padding-scroll">
+    <button tabindex="0" class="btn btn-secondary shadow-md btn-sm lg:btn-md"
+        (click)="showFilterCard()">Filtrar</button>
+    <button tabindex="0" class="btn btn-secondary shadow-md btn-sm lg:btn-md" (click)="showSortCard()">Ordenar</button>
+</div>
+
+<app-radio-options-tooltip [isShown]="isFilterCardShown" [options]="filterOptions" name="filter" label="Filtrar por:"
+    [selected]="filterBy" (optionSelected)="onFilterSelected($event)"
+    (selectionCleared)="onFilterCleared()"></app-radio-options-tooltip>
+
+<app-radio-options-tooltip [isShown]="isSortCardShown" [options]="sortOptions" name="sort" label="Ordenar por:"
+    [selected]="sortBy" (optionSelected)="onSortSelected($event)"
+    (selectionCleared)="onSortCleared()"></app-radio-options-tooltip>

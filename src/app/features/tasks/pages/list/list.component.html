@@ -1,0 +1,21 @@
+<app-task-filter-sort [isDesktop]="isDesktop" *ngIf="myTasks$.length>0" (taskFilteredBy)="onTaskFilteredBy($event)"
+    (taskSortedBy)="onTaskSortedBy($event)"></app-task-filter-sort>
+<div
+    class="bg-transparent container mx-auto px-4 pt-4 gap-4 flex flex-col pb-8 static sm:w-10/12 md:w-3/4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
+    <div class="divider" *ngIf="myTasks$.length===0; else tasks">No hay tareas para mostrar</div>
+    <ng-template #tasks>
+        <app-task #tasks *ngFor="let task of myTasks$" [task]="task" (toggleStatus)="toggleStatus($event)"
+            (showDetails)="openDetailsModal($event)" (delete)="openDeleteTaskModel($event)"></app-task>
+    </ng-template>
+</div>
+<div *ngIf="!isDesktop" id="new-task" class="fixed left-1/2 bottom-12 btn-group -translate-x-1/2 padding-scroll">
+    <button class="btn btn-primary btn-square sm:btn-block sm:px-4 shadow-md" routerLink="new-task">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6 stroke-current">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        <span class="hidden sm:inline-block">Agregar</span>
+    </button>
+</div>
+<app-details name="detailsModal" [task]="selectedTask"></app-details>
+<app-delete-task name="deleteTaskModal" [task]="selectedTask" (onDelete)="getAllTask()"></app-delete-task>

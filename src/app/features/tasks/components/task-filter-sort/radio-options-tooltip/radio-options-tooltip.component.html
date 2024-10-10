@@ -1,0 +1,21 @@
+<div *ngIf="isShown"
+    class="card card-bordered bg-neutral-content shadow w-9/12 sm:w-56 absolute z-10 left-1/2 -translate-x-1/2 translate-y-2">
+    <div class="card-body p-4">
+        <p class="text-xs opacity-60 sm:text-sm">{{label}}</p>
+        <div class="form-control" *ngFor="let option of options">
+            <label class="cursor-pointer label" (click)="selectOption(option.value)">
+                <span class="label-text">{{option.name}}</span>
+                <input type="radio" [name]="name" class="radio" [value]="option.value"
+                    [checked]="selected===option.value">
+            </label>
+        </div>
+        <button class="btn btn-xs btn-outline mt-4" [disabled]="selected===''||selected===undefined"
+            (click)="clearSelection()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="inline-block w-4 h-4 mr-1 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            Limpiar selección
+        </button>
+    </div>
+</div>
