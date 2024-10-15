@@ -9,6 +9,8 @@ This project is a task management app, allowing users to:
 
 Tasks are stored locally using the browser's **Local Storage**, meaning they will persist even after refreshing the page or closing the browser.
 
+Preview: [To-Do List App](https://ee-v.github.io/to-do/)
+
 ## Features
 - **Mobile First Design**: The app is designed with a mobile-first strategy, adapting to mobile, tablet, and desktop screens.
 - **Modals and Alerts**: Reusable modals are implemented for user interactions, and dynamic alerts are used to display messages.
